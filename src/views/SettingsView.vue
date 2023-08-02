@@ -77,12 +77,11 @@ const appHeadingBackground = computed(() => {
     padding: 10px 10px 10px 10px;
 }
 .signOutButton{
-    margin-bottom: 2rem;
-    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 .fileUpload{
     margin-top: 0.9rem;
-    margin-bottom: 1rem;
     cursor: pointer;
     border-radius: 2px;
 }

@@ -4,9 +4,10 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import MainView from '../views/MainView.vue';
 import Login from '../views/LogIn.vue';
 import CreateAccount from '../views/CreateAccount.vue';
-import LostPassword from '../views/LostPassword.vue'
-import SettingsView from '../views/SettingsView.vue'
-import ControlsView from '../views/ControlsView.vue'
+import LostPassword from '../views/LostPassword.vue';
+import SettingsView from '../views/SettingsView.vue';
+import ControlsView from '../views/ControlsView.vue';
+import MapsView from '../views/MapsView.vue';
 
 const routes = [
   {
@@ -44,6 +45,14 @@ const routes = [
     path: '/controls',
     name: 'controls',
     component: ControlsView,
+    meta: {
+      requiresAuth: true,
+    }
+  },
+  {
+    path: '/location',
+    name: 'location',
+    component: MapsView,
     meta: {
       requiresAuth: true,
     }

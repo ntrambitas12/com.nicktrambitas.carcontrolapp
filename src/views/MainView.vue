@@ -13,7 +13,7 @@ const links = [
   text: 'Controls'
 },
 {
-  link: '/controls',
+  link: '/location',
   image: 'https://placehold.co/50x50',
   text: 'Location'
 },
@@ -86,6 +86,7 @@ const appHeadingBackground = computed(() => {
   font-size: larger;
   color: white;
   font-family: sans-serif;
+  padding-bottom: 0.75rem;
   @media screen and (min-width: 600px) {
   padding-bottom: 2rem;
   }
