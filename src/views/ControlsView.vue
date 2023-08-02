@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, onBeforeMount, computed } from 'vue';
+import AnimatedButton from '@/components/AnimatedButton.vue';
 import { useAppStore } from '@/stores/appStore';
 import { RouterLink } from 'vue-router';
 const store = useAppStore();
@@ -22,23 +23,36 @@ const appHeadingBackground = computed(() => {
             <img src="https://placehold.co/40x40"/>
         </router-link>
     </div>
-   <div class="AppCardContainer MainAppCardContainer">
+   <div class="AppCardContainer ControlsAppCardContainer">
        <div class="AppCardMain">
             <div class="DoorLocks">
-                <hr>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Lock'}" button-type="DoorButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Unlock'}" button-type="DoorButton"/>
             </div>
+            <hr>
             <div class="OtherControls">
-                <hr>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Flash'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Honk'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Trunk'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Fuel'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Open'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Close'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Start'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Stop'}" button-type="ControlButton"/>
             </div>
+            <hr>
        </div>
    </div>
 </div> 
 </template>
 
-<style>
+<style scoped>
 .goBack{
     margin-right: auto;
     padding-left: 1rem;
+}
+.ControlsAppCardContainer{
+    margin-top: 20%;
 }
 .HeadingControls{
     display: flex;
@@ -51,5 +65,25 @@ const appHeadingBackground = computed(() => {
 }
 .ControlsText{
     margin-right: 56px; /* Offset to perfectly align heading to the center of the screen. Update this if back arrow image changes size */
+}
+
+.DoorLocks{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 5%;
+}
+.OtherControls{
+    padding-top: 5%;
+    padding-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.61rem;
+    align-content: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
 }
 </style>
