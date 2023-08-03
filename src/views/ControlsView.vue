@@ -2,15 +2,22 @@
 import { onMounted, onBeforeMount, computed } from 'vue';
 import AnimatedButton from '@/components/AnimatedButton.vue';
 import { useAppStore } from '@/stores/appStore';
+import { useControlsStore } from '@/stores/controlsStore'
 import { RouterLink } from 'vue-router';
 const store = useAppStore();
+const controlStore = useControlsStore();
 
 onBeforeMount(() => {
   store.loadProfileData();
+  controlStore.initializeStore();
 });
 const appHeadingBackground = computed(() => {
-    return `background: linear-gradient(129deg, rgb(${store.colorScheme?.r ?? 147}, ${store.colorScheme?.g ?? 22}, ${store.colorScheme?.b ?? 22}), rgb(149, 143, 143));`
+    return `background: linear-gradient(129deg, rgb(${store.colorScheme?.r ?? 147}, ${store.colorScheme?.g ?? 22}, ${store.colorScheme?.b ?? 22}), rgb(149, 117, 117));`
 })
+
+const handleClick = async (event) => {
+    await controlStore.sendCommand(event, store.getVin);
+}
 </script>
 
 <template>
@@ -26,21 +33,26 @@ const appHeadingBackground = computed(() => {
    <div class="AppCardContainer ControlsAppCardContainer">
        <div class="AppCardMain">
             <div class="DoorLocks">
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Lock'}" button-type="DoorButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Unlock'}" button-type="DoorButton"/>
+                <animated-button v-for="(item, idx) in controlStore.getDoorButtons" 
+                :button-content="item"
+                button-type="DoorButton"
+                :key="idx"
+                @click="(event) => handleClick(event)"
+                :disabled="controlStore.buttonStateTracking.get(item?.text)"/>
             </div>
             <hr>
             <div class="OtherControls">
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Flash'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Honk'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Trunk'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Fuel'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Open'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Close'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Start'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Stop'}" button-type="ControlButton"/>
+                <animated-button v-for="(item, idx) in controlStore.getControlButtons"
+                :button-content="item"
+                button-type="ControlButton"
+                :key="idx"
+                @click="(event) => handleClick(event)"
+                :disabled="controlStore.buttonStateTracking.get(item?.text)"/>
             </div>
             <hr>
+            <div class="Climate Controls">
+                <p style="text-align: center; color: white;">WIP. Climate Controls Go Here.</p>
+            </div>
        </div>
    </div>
 </div> 
@@ -72,17 +84,17 @@ const appHeadingBackground = computed(() => {
     flex-direction: row;
     gap: 1rem;
     justify-content: center;
-    margin-bottom: 5%;
+    padding-bottom: 5%;
 }
 .OtherControls{
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 10%;
+    padding-bottom: 10%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 1.61rem;
+    gap: 2.5rem;
     align-content: center;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 80%;
     margin: auto;
 }

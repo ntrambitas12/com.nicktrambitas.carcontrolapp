@@ -52,7 +52,7 @@ const appHeadingBackground = computed(() => {
                 <input type="text" placeholder="Give your car a nickname!" :disabled="store.inputDisabled" id="nickname" class="text-input settings-input-text" v-model="store.nickNameNew" @input="() => store.enableSave()"/>
                 <label class="SettingsLabel" for="file-upload">Car Picture:</label>
                 <input type="file" @change="onFileChange()" accept="image/*" id="file-upload" class="fileUpload" ref="fileInputRef"/>
-                <p>{{ store.uploadProgressMessage }}</p>
+                <p class="spacer">{{ store.uploadProgressMessage }}</p>
                 <AnimatedButton :button-content="{text: 'Save'}" :disabled="store.saveDisabled" @click="() => {store.saveProfile()}"/>
                 <AnimatedButton :button-content="{text: 'Sign Out', color: 'Red'}" class="signOutButton" @click="() => {store.signOut()}"/>
 
@@ -149,6 +149,8 @@ const appHeadingBackground = computed(() => {
 .SettingsContainer{
     margin-top: auto;
     margin-bottom: auto;
+}
+.spacer{ 
     padding-top: 2rem;
 }
 </style>

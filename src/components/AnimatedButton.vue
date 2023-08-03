@@ -19,22 +19,28 @@ const emit = defineEmits(['click'])
 
 const handleClick = () => {
     if(!props.disabled) {
-        emit('click');
+        emit('click', props.buttonContent?.text);
     }
 }
 
 const calculatedClass = () => {
     let calculatedClass = props.buttonType;
     calculatedClass = (props.disabled)? calculatedClass + ` disabled${props.buttonType} ${props.buttonContent?.color ?? ''}` :  calculatedClass + ` ${props.buttonContent?.color ?? ''}`;
-    console.log(calculatedClass)
     return calculatedClass;
+}
+
+const caluculateImgClass = () => {
+    let calcClass = props.buttonType;
+    calcClass += 'img'
+    console.log(calcClass)
+    return calcClass;
 }
 </script>
 
 <template>
     <div class="AnimatedButtonClass">
         <button @click="handleClick()" :class="calculatedClass()">
-            <span><img :src="props.buttonContent?.image ?? ''"></span>
+            <span><img :src="props.buttonContent?.image ?? ''" :class="caluculateImgClass()"></span>
             <span class="AnimatedButtonText">{{ props.buttonContent?.text }}</span>
         </button>
     </div>
@@ -75,12 +81,15 @@ const calculatedClass = () => {
     align-items: center;
     background-color: rgb(255,255,255, 0);
     border: 2px solid #ffffffed;
-    width: 5.75em;
-    font-size: .9em;
-    height: 5.75em;
+    width: 5.1em;
+    font-size: .85em;
+    height: 5.1em;
     border-radius: 50%;
     color: white;
     transition: all 0.3s;
+}
+.ControlButtonimg {
+    scale: 0.75;
 }
 /* Door Button Styles */
 .DoorButton {
