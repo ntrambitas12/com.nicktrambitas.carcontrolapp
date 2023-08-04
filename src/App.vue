@@ -16,7 +16,7 @@
     color: white;
     font-family: sans-serif;
     font-style: italic;
-    font-size: 2.5em;
+    font-size: 2.4em;
     @media screen and (min-width: 376px) {
         margin-bottom: 2.5em;
         margin-top: 2em;
@@ -98,6 +98,26 @@
 }
 .AccountLinkClickable{
     color: white;
+}
+.AppSubpageHeadingText{
+    margin-right: 56px; /* Offset to perfectly align heading to the center of the screen. Update this if back arrow image changes size */
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 2.4em;
+    font-family: sans-serif;
+    @media screen and (min-width:630px) {
+        font-size: xxx-large;
+    }
+    @media screen and (max-width:300px) {
+        font-size: 2rem;
+    }
+}
+.AppSubpageHeadingTextWrapper{
+    margin-right: auto;  
+}
+.goBack{
+    margin-right: auto;
+    padding-left: 1rem;
 }
 
 </style>

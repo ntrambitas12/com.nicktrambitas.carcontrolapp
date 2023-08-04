@@ -23,8 +23,8 @@ const handleClick = async (event) => {
 <template>
  <div class="AppBody" :style="appHeadingBackground">
     <div class="AppCardHeading HeadingControls">
-          <div class="ControlsTextWrapper">
-            <h1 class="ControlsText">Controls</h1>
+          <div class="AppSubpageHeadingTextWrapper">
+            <h1 class="AppSubpageHeadingText">Controls</h1>
           </div>  
         <router-link class="goBack" to="/">
             <img src="https://placehold.co/40x40"/>
@@ -65,6 +65,9 @@ const handleClick = async (event) => {
 }
 .ControlsAppCardContainer{
     margin-top: 20%;
+    @media screen and (min-width:630px) {
+        margin-top: 5%;
+}
 }
 .HeadingControls{
     display: flex;
@@ -72,12 +75,7 @@ const handleClick = async (event) => {
     justify-content: center;
     align-items: center;
 }
-.ControlsTextWrapper{
-    margin-right: auto;  
-}
-.ControlsText{
-    margin-right: 56px; /* Offset to perfectly align heading to the center of the screen. Update this if back arrow image changes size */
-}
+
 
 .DoorLocks{
     display: flex;
@@ -97,5 +95,8 @@ const handleClick = async (event) => {
     justify-content: space-evenly;
     width: 80%;
     margin: auto;
+    @media screen and (min-width:630px) {
+    width: 60%;
+}
 }
 </style>

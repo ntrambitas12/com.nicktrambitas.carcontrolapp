@@ -14,8 +14,8 @@ const mapsURL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12427.541
 </script>
 <template>
     <div class="AppCardHeading HeadingMap" :style="appHeadingBackground">
-          <div class="ControlsTextWrapper">
-            <h1 class="ControlsText">Location</h1>
+          <div class="AppSubpageHeadingTextWrapper">
+            <h1 class="AppSubpageHeadingText">Location</h1>
           </div>  
         <router-link class="goBack" to="/">
             <img src="https://placehold.co/40x40"/>
@@ -36,7 +36,10 @@ const mapsURL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12427.541
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 79.88px); /* Calc is used to subtract the height of the header so that the maps dont overflow */
+  height: calc(100vh - 93px); /* Calc is used to subtract the height of the header so that the maps dont overflow */
+  @media screen and (min-width:630px) {
+    height: calc(100vh - 103px); /* Calc is used to subtract the height of the header so that the maps dont overflow */
+  }
 }
 
 .embedded-maps-iframe {
@@ -49,14 +52,6 @@ const mapsURL = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12427.541
     justify-content: center;
     align-items: center;
 }
-.ControlsTextWrapper{
-    margin-right: auto;  
-}
-.ControlsText{
-    margin-right: 56px; /* Offset to perfectly align heading to the center of the screen. Update this if back arrow image changes size */
-}
-.goBack{
-    margin-right: auto;
-    padding-left: 1rem;
-}
+
+
 </style>
