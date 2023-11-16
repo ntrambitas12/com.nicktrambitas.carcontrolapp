@@ -11,6 +11,10 @@ onBeforeMount(() => {
 const appHeadingBackground = computed(() => {
     return `background: linear-gradient(129deg, rgb(${store.colorScheme?.r ?? 147}, ${store.colorScheme?.g ?? 22}, ${store.colorScheme?.b ?? 22}), rgb(149, 143, 143));`
 })
+
+const buttonClicked = (buttonFunction) => {
+    store.sendCommand(buttonFunction);
+}
 </script>
 
 <template>
@@ -26,19 +30,19 @@ const appHeadingBackground = computed(() => {
    <div class="AppCardContainer ControlsAppCardContainer">
        <div class="AppCardMain">
             <div class="DoorLocks">
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Lock'}" button-type="DoorButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Unlock'}" button-type="DoorButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Lock'}" button-type="DoorButton" @click="buttonClicked('lockDoors')"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Unlock'}" button-type="DoorButton" @click="buttonClicked('unlockDoors')"/>
             </div>
             <hr>
             <div class="OtherControls">
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Flash'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Honk'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Trunk'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Fuel'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Open'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Close'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Start'}" button-type="ControlButton"/>
-                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Stop'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Flash'}" button-type="ControlButton" @click="buttonClicked('hazardsOn')"/>
+                <!-- <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Honk'}" button-type="ControlButton"/> -->
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Trunk'}" button-type="ControlButton" @click="buttonClicked('trunkOpen')"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'!Hazards'}" button-type="ControlButton" @click="buttonClicked('hazardsOff')"/>
+                <!-- <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Open'}" button-type="ControlButton"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Close'}" button-type="ControlButton"/> -->
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Start'}" button-type="ControlButton" @click="buttonClicked('remoteStart')"/>
+                <animated-button :button-content="{image:'https://placehold.co/35x35', text:'Stop'}" button-type="ControlButton" @click="buttonClicked('remoteStop')"/>
             </div>
             <hr>
        </div>

@@ -17,14 +17,22 @@ router.get('/', (req, res) => {
 router.put('/putStatus', (req, res) => {
   const vin = req.header('set-vin');
   const newState = req.body;
+  if (vin && newState) {
   appState.setAppState(newState, vin);
   res.status(200).send();
+  } else {
+    res.status(400).send();
+  }
 });
 
 router.get('/getCommand', (req, res) => {
   const vin = req.header('set-vin');
+  if (vin) {
   const command = appState.getCommand(vin);
   res.status(200).json(command);
+  } else {
+    res.status(400).send();
+  }
 });
 
 // Export the router

@@ -9,7 +9,7 @@ export const useAppStore = defineStore('app', {
     state: () => ({ 
         colorScheme: [], 
         colorSchemeNew: [],
-        nickName: '',
+        nickName: 'Nickname',
         nickNameNew: '',
         profilePhotoBlob: null,
         profilePhoto: null,
@@ -59,7 +59,12 @@ export const useAppStore = defineStore('app', {
            const profLoc = `users/${auth.currentUser.uid}/cars`;
            const picRef = storageRef(storage, profLoc + '/car1/profilePic');
            // Get the download URL
+           try {
           this.profilePhoto = await getDownloadURL(picRef)
+           } catch(error) {
+            console.log(error);
+           }
+          
       },
       changeImage(newImg) {
         this.saveDisabled = true;
@@ -127,6 +132,27 @@ export const useAppStore = defineStore('app', {
       },
       enableSave() {
         this.saveDisabled = false;
-      }
+      },
+      async sendCommand(clicked) {
+        const URL = 'http://192.168.255.150:3000/api/putCommand';
+        const data = {command: clicked};
+
+        // Configure the request
+        const options = {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'set-vin': this.VIN
+          },
+          body: JSON.stringify(data)
+        };
+
+        try {
+          const ret = await fetch (URL, options);
+        } catch (err) {
+          console.log(error);
+        }
+
+      },
     },
   })

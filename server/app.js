@@ -9,6 +9,7 @@ const apiRoutes = require('./routes/api');
 
 const app = express();
 const port = 3000; // You can change the port as per your requirements
+const ipAddr = '0.0.0.0';
 
 // Use the cors middleware to enable CORS
 app.use(cors());
@@ -25,5 +26,5 @@ app.use('/vci', vciRoutes.router);
 app.use('/api', apiRoutes.router);
 
 app.listen(port, () => {
-  console.log(`Express server is running on http://localhost:${port}`);
+  console.log(`Express server is running on port:${port}`);
 });
